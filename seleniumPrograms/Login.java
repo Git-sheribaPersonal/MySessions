@@ -1,5 +1,7 @@
 package seleniumPrograms;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -34,12 +36,48 @@ public class Login {
 		WebDriverManager.chromedriver().setup();
 		// Step 2: Instantaite the ChromeDriver
 		ChromeDriver driver = new ChromeDriver();
+		
+		String property = System.getProperty("webdriver.chrome.driver", "path");
+		
+		System.out.println(property);
 		// Launch the url in the chosen browser
 		// Load a new web page in the current browser window
 		driver.get("http://leaftaps.com/opentaps/control/main");
 		// Maximise the screen
 		driver.manage().window().maximize();
 		// Locate the webeelemnt (DOM)
+		WebElement webUsername = driver.findElement(By.id("username"));
+		webUsername.sendKeys("demosalesmanager");
+		
+		// driver.findElement(By.id("username")).sendKeys("demosalesmanager");
+		
+		WebElement webPassword = driver.findElement(By.id("password"));
+		webPassword.sendKeys("crmsfa");
+		
+		driver.findElement(By.className("decorativeSubmit")).click();
+		
+		// Get the title of the current page. 
+		String orgTitle = "Leaftaps - TestLeaf Automation Platform";
+		String title = driver.getTitle();
+		
+		if(orgTitle.equals(title))
+			System.out.println("Landed in the login page correctly ");
+		else
+			System.out.println("Incorrect landing of the page");
+		//Close the current window
+		
+		driver.close();
+		
+		
+		
+		
+	
+		
+		
+		
+		
+		
+		
 		
 	}
 
